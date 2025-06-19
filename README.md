@@ -1,6 +1,8 @@
 # ECE2360FinalProject
 
 Current code is extremely messy. Will have to tidy up!
+TODO:
+- Change the way Spotify opens and closes because it affects other applications.
 
 Description:
 This project is a Spotify remote with basic functionality such as:
