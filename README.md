@@ -1,9 +1,5 @@
 # ECE2360FinalProject
 
-Current code is extremely messy. Will have to tidy up!
-TODO:
-- Change the way Spotify opens and closes because it affects other applications.
-
 Description:
 This project is a Spotify remote with basic functionality such as:
 - Opening and closing Spotify on computer
@@ -22,4 +18,4 @@ The code is used for the ESP32 microcontroller and uses components:
 
 This project also uses:
 - Wifi connection
-- Blutooth (low energy)
+- Bluetooth (low energy)
