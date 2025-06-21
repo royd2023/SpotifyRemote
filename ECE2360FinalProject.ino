@@ -95,25 +95,49 @@ void setup() {
 
 void loop() {
 
-   if (bleKeyboard.isConnected()) {
+
+  state = digitalRead(pirPin);         // Read the state of the PIR sensor
+  if (state == HIGH) {
+    //Serial.println("Somebody here!");
+    lastMotionTime = millis(); // reset timer
+    lcd.backlight();
+    lcd.display();
+  } else {
+    //Serial.println("Monitoring...");
+    
+    // check if 5 seconds have passed since last motion
+    if (millis() - lastMotionTime >= displayTimeout) {
+      lcd.noDisplay();
+      lcd.noBacklight();
+    }
+  }
+
+  if (bleKeyboard.isConnected()) {
+    
     if (digitalRead(pin27) == LOW && !wasPressed) {
+      Serial.println("pin27 pressed");
       wasPressed = true;
       if (!inSpotify) {
         inSpotify = true;
         digitalWrite(pin32, HIGH);
-        Serial.println("Sending Win + R and launching Spotify...");
+        Serial.println("Opening Spotify...");
 
         // Step 1: Press Windows + R
         bleKeyboard.press(KEY_LEFT_GUI); // Windows key
         bleKeyboard.press('r');
-        delay(100);
+        delay(800);
         bleKeyboard.releaseAll();
 
         // Step 2: Wait for Run dialog
-        delay(400);
+        delay(800);
 
         // Step 3: Type "spotify" and press Enter
-        bleKeyboard.print("spotify");
+        const char* command = "C:\\Scripts\\ToggleSpotify.bat";
+        for (int i = 0; i < strlen(command); i++) {
+          bleKeyboard.write(command[i]);
+          delay(50);  // Delay between characters
+        }
+
         bleKeyboard.write(KEY_RETURN);
 
         // Update the shift register to show that Spotify is open
@@ -121,8 +145,18 @@ void loop() {
 
       } else {
         inSpotify = false;
-        bleKeyboard.press(KEY_LEFT_ALT);
-        bleKeyboard.press(KEY_F4);
+         // Step 1: Press Windows + R
+        bleKeyboard.press(KEY_LEFT_GUI); // Windows key
+        bleKeyboard.press('r');
+        delay(400);
+        bleKeyboard.releaseAll();
+
+        // Step 2: Wait for Run dialog
+        delay(400);
+
+        bleKeyboard.print("C:\\Scripts\\ToggleSpotify.bat");
+
+        bleKeyboard.write(KEY_RETURN);
         delay(100);
         bleKeyboard.releaseAll();
         
@@ -144,21 +178,7 @@ void loop() {
 
 
 
-  state = digitalRead(pirPin);         // Read the state of the PIR sensor
-  if (state == HIGH) {
-    Serial.println("Somebody here!");
-    lastMotionTime = millis(); // reset timer
-    lcd.backlight();
-    lcd.display();
-  } else {
-    //Serial.println("Monitoring...");
-    
-    // check if 5 seconds have passed since last motion
-    if (millis() - lastMotionTime >= displayTimeout) {
-      lcd.noDisplay();
-      lcd.noBacklight();
-    }
-  }
+  
 
   // Handle button on pin 26
   if (digitalRead(pin26) == LOW) {
