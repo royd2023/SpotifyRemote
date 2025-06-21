@@ -1,4 +1,5 @@
 # ECE2360FinalProject
+Currently, wifi is connected to my hotspot, not a network.
 
 Description:
 This project is a Spotify remote with basic functionality such as:
