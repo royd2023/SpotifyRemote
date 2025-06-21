@@ -19,3 +19,7 @@ The code is used for the ESP32 microcontroller and uses components:
 This project also uses:
 - Wifi connection
 - Bluetooth (low energy)
+
+Documentation/Project Submission Here:
+https://drive.google.com/file/d/1yQfKQxLsppd87Nmi1Joi0NnIKRnW8diy/view?usp=sharing
+(disclaimer copying any code will result in academic misconduct!)
