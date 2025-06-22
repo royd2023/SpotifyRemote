@@ -1,5 +1,6 @@
 # ECE2360FinalProject
 Currently, wifi is connected to my hotspot, not a network.
+Need to test with independent power source as well.
 
 Description:
 This project is a Spotify remote with basic functionality such as:
