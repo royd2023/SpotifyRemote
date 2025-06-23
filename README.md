@@ -1,6 +1,11 @@
 # ECE2360FinalProject
 Currently, wifi is connected to my hotspot, not a network.
 Need to test with independent power source as well.
+Setup:
+- Compile and run
+- Activate Hotspot (Will hopefully work for wifi and hotspot in the future)
+- In bluetooth settings, ensure 'SpotifyRemote' is connected
+- Once wifi and bluetooth are connected, it should function
 
 Description:
 This project is a Spotify remote with basic functionality such as:
